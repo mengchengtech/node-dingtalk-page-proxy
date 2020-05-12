@@ -6,7 +6,9 @@ async function ddGo () {
   try {
     const codeRes = await getDDCode()
     if (codeRes && codeRes.code) {
+      console.log('code', codeRes)
       replaceToCas(codeRes.code)
+      showFailDialog()
     }
   } catch (error) {
     console.log('get code error', error)
@@ -33,12 +35,33 @@ async function getDDCode () {
 
 function replaceToCas (code) {
   dd.biz.navigation.replace({
-    url: `http://i.mctech.vip/cas/third/private/dingTalk/qr-login?code=${code}`,
+    url: `http://i.mctech.vip/cas/third/private/dingTalk/qr-login?code=${code}&from=mcdd`,
     onSuccess: () => {
       console.log('replaced')
     },
     onFail: err => {
-      console.log('replace error', err)
+      showFailDialog()
+    }
+  })
+}
+
+function showFailDialog () {
+  dd.device.notification.confirm({
+    message: '登录失败,请重试',
+    title: '登录失败',
+    buttonLabels: ['退出', '重试'],
+    onSuccess (res) {
+      const index = res.buttonIndex
+      console.log(index)
+      if (index === 0) {
+        dd.biz.navigation.close()
+      }
+      if (index === 1) {
+        ddGo()
+      }
+    },
+    onFail (err) {
+      console.log(err)
     }
   })
 }
