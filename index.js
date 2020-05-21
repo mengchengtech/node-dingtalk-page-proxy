@@ -21,6 +21,22 @@ router.get('/ins', async (ctx, next) => {
 })
 
 router.get('/auth', async (ctx, next) => {
+  if (!ctx.query.accessToken) {
+    ctx.state = 400
+    ctx.body = {
+      code: 'empty_param',
+      desc: 'accessToken为空'
+    }
+    return
+  }
+  if (!ctx.query.code) {
+    ctx.state = 400
+    ctx.body = {
+      code: 'empty_param',
+      desc: 'code为空'
+    }
+    return
+  }
   const accessToken = ctx.query.accessToken
   const code = ctx.query.code
   const url = `https://oapi.dingtalk.com/user/getuserinfo?access_token=${accessToken}&code=${code}`
