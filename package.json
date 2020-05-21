@@ -9,6 +9,7 @@
   "private": true,
   "dependencies": {
     "@koa/router": "^8.0.8",
+    "axios": "^0.19.2",
     "dingtalk-jsapi": "^2.10.3",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.3.0",
