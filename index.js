@@ -14,6 +14,11 @@ router.get('/', (ctx, next) => {
 router.get('/redirect', (ctx, next) => {
   ctx.redirect('http://www.163.com')
 })
+router.get('/auth',(ctx,next)=>{
+  ctx.body={
+    success:true
+  }
+})
 
 app
   .use(bodyParser())

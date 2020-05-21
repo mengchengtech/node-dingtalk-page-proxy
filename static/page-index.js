@@ -35,7 +35,7 @@ async function getDDCode () {
 
 function replaceToCas (code) {
   dd.biz.navigation.replace({
-    url: `http://i.mctech.vip/cas/third/private/dingTalk/qr-login?code=${code}&from=mcdd`,
+    url: `http://dev.mctech.vip/cas/third/private/dingTalk/page-login?agentId=10003&code=${code}`,
     onSuccess: () => {
       console.log('replaced')
     },
