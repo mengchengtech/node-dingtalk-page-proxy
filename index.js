@@ -21,6 +21,8 @@ router.get('/ins', async (ctx, next) => {
 })
 
 router.get('/auth', async (ctx, next) => {
+  const accessToken = ctx.query.accessToken
+  const code = ctx.query.code
   const url = `https://oapi.dingtalk.com/user/getuserinfo?access_token=${accessToken}&code=${code}`
   const response = await axios.get(url)
   console.log(response.data)
