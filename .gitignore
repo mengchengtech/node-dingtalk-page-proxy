@@ -1,5 +1,5 @@
 .vscode
-/static/config.js
+/src/config.js
 node_modules
 package-lock.json
 git.properties
